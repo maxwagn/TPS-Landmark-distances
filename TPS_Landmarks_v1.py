@@ -13,7 +13,7 @@ sys.stdout.write('''
         (4, 1); Interorbital distance
         (8, 2); HW
     
-   # usage: $ python TPS_dist_v1.py TPS_input_name.TPS outfile_name.csv metafile_name.txt
+   # usage: $ python TPS_Landmarks_v1.py TPS_input_name.TPS outfile_name.csv metafile_name.txt
 
     ''')
 
@@ -48,8 +48,8 @@ def parsing_TPS(TPSfile):
     return parsed_dict
 
 def _distance1(ID,xcoordinates,ycoordinates,Scale):
-    '''Calculates Euclidian distances between two landmarks and corrects for Scale factor
-    Returns it for every specimen in an dictionary'''
+    '''Calculates Euclidian distances between two landmarks and corrects for Scale factor (set in TPS file).
+    Returns distances for every specimen in an dictionary'''
     distance_list = []
     distance_dict = {}
     listx = []
@@ -74,7 +74,7 @@ def _distance1(ID,xcoordinates,ycoordinates,Scale):
     return (distance_dict)
 
 def number_of_LMs(TPSfile):
-    "Returns number of Landmarks in the dataset"
+    "Returns number of Landmarks in the dataset."
     with open(TPSfile) as fh:
         first_line_read = fh.readline()
         first_line = first_line_read.replace("LM=", "")
