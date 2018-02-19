@@ -1,6 +1,6 @@
 # TPS-Landmark-distances
 
-This program automatically calculates Euclidian distances of TPS coordinates from tps_dig landmark digitizations.
+This program automatically calculates Euclidian distances of TPS coordinates from tps_dig landmark digitizations (see "Test_tps_file.TPS" for format comparisons).
 The tps-programs can be downloaded here: <http://life.bio.sunysb.edu/ee/rohlf/software.html>
 
 1) Choose the measurements names and configurations in the format shown in "Test_metadata.txt":
