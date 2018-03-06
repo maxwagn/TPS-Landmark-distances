@@ -6,15 +6,15 @@ import sys
 import itertools
 
 sys.stdout.write('''
-   # Automatically calculates Truss-distances between landmarks of TPS-file.
-   # Returns csv-file with distances of given Landmark configurations:
-   # Example-template for metafile:
-        (1, 2); SL
-        (4, 1); Interorbital distance
-        (8, 2); HW
+    # Automatically calculates Truss-distances between landmarks of TPS-file.
+    # Returns csv-file with distances of given Landmark configurations:
+    # Example-template for metafile:
+    (1, 2); SL
+    (4, 1); Interorbital distance
+    (8, 2); HW
     
-   # usage: $ python TPS_Landmarks_v1.py TPS_input_name.TPS outfile_name.csv metafile_name.txt
-
+    # usage: $ python TPS_Landmarks_v1.py TPS_input_name.TPS outfile_name.csv metafile_name.txt
+    
     ''')
 
 TPS_file_name = sys.argv[1]
@@ -49,7 +49,7 @@ def parsing_TPS(TPSfile):
 
 def _distance1(ID,xcoordinates,ycoordinates,Scale):
     '''Calculates Euclidian distances between two landmarks and corrects for Scale factor (set in TPS file).
-    Returns distances for every specimen in an dictionary'''
+        Returns distances for every specimen in an dictionary'''
     distance_list = []
     distance_dict = {}
     listx = []
@@ -69,7 +69,7 @@ def _distance1(ID,xcoordinates,ycoordinates,Scale):
         if value > 0:
             distance_list.append(value)
     distance_dict[ID] = {}
-    for i in range(len(LM_combinations)):
+    for i in range(len(distance_list)):
         distance_dict[ID][str(LM_combinations[i])]=distance_list[i]
     return (distance_dict)
 
@@ -104,6 +104,7 @@ with open(metadata) as meta:
             for j in measures:
                 metadict[str(lm_meta)]=str(measures)
 
+measur_metadict = len(metadict)
 text = str()
 heading = str('ID, ')
 counter = 1
@@ -112,7 +113,7 @@ for dictionary in sample:
         text += '\n' + ID + ", "
         for from_to in sample_dict:
             if from_to in metadict:
-                if counter <= 3:
+                if counter <= measur_metadict:
                     heading += metadict[from_to] + ", "
                     text += str(sample_dict[from_to]) + ", "
                     counter += 1
@@ -127,3 +128,4 @@ print("\nName of TPS-file: {}".format(TPS_file_name))
 print("Name of Metadata_file: {}".format(metadata))
 print("Name of output-file: {}".format(out_file_name))
 print("Number of Landmarks in your dataset: {}".format(LMs))
+
