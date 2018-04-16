@@ -69,8 +69,11 @@ def _distance1(ID,xcoordinates,ycoordinates,Scale):
         if value > 0:
             distance_list.append(value)
     distance_dict[ID] = {}
-    for i in range(len(distance_list)):
-        distance_dict[ID][str(LM_combinations[i])]=distance_list[i]
+    if len(distance_list) == len(LM_combinations):
+        for i in range(len(distance_list)):
+            distance_dict[ID][str(LM_combinations[i])]=distance_list[i]
+    else:
+        print("LandmarkNumberError: Check if all individuals have the same Landmark configuration!!!")
     return (distance_dict)
 
 def number_of_LMs(TPSfile):
@@ -127,5 +130,5 @@ outputfile.write(heading[:-2] + '\n' + text[1:])
 print("\nName of TPS-file: {}".format(TPS_file_name))
 print("Name of Metadata_file: {}".format(metadata))
 print("Name of output-file: {}".format(out_file_name))
-print("Number of Landmarks in your dataset: {}".format(LMs))
+print("Number of Landmarks in your dataset: {}".format(LMs) + '\n\n')
 
